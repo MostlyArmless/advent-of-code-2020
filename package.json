@@ -8,7 +8,8 @@
   },
   "scripts": {
     "start": "node ./build/src/main.js",
-    "test": "mocha --watch"
+    "test": "mocha ./build/test/*spec.js",
+    "clean": "node ./scripts/clean.js"
   },
   "repository": {
     "type": "git",
@@ -17,7 +18,9 @@
   "keywords": [],
   "author": "Mike",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "fs-extra": "^9.0.1"
+  },
   "devDependencies": {
     "@types/chai": "^4.1.7",
     "@types/mocha": "^5.2.5",

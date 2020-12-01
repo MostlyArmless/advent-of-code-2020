@@ -1,26 +1,16 @@
 # advent-of-code-2020
 
-This is an excellent package.
+My solutions to the [Advent of Code 2020](https://adventofcode.com/2020) problems.
 
-## Installation
+## Setup
 
-```bash
-npm install advent-of-code-2020
-```
+1. Clone repo `git clone git@github.com:MostlyArmless/advent-of-code-2020.git`
+2. Install dependencies `npm install`
 
 ## Usage
 
-```javascript
-var excellentPkg = require('advent-of-code-2020');
-// Everything is now excellent.
-```
+`npm start` runs `/src/main.ts` which will solve each problem and print the solution
 
-## Contributing
+## Tests
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
-
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
+To run the tests, either use `npm test` to run all the tests, or configure VS Code's Mocha Test Explorer extension to look for files with the pattern `test/*spec.ts`, and then you can run individual tests from the Test Explorer.
