@@ -1,21 +1,15 @@
 import { LoggingLevel } from "./interfaces";
 import { XOR } from "./tools";
 
-interface IPasswordPolicy1
+interface IPasswordCandidate
 {
-    min: number;
-    max: number;
+    a: number;
+    b: number;
     targetLetter: string;
     password: string
 }
 
-interface IPasswordPolicy2
-{
-    position1: number;
-    position2: number;
-    targetLetter: string;
-    password: string;
-}
+type PasswordPolicy = ( candidate: IPasswordCandidate ) => boolean;
 
 export interface IProblem2Result
 {
@@ -23,107 +17,75 @@ export interface IProblem2Result
     validPasswordIndices: boolean[];
 }
 
-// Expecting input to be a multi-line string of the following form:
-/*
-1-3 a: abcde
-1-3 b: cdefg
-2-9 c: ccccccccc
-*/
-export function problem2_part1( input: string, loggingLevel: LoggingLevel = LoggingLevel.Off ): IProblem2Result
+function validatePasswords( candidates: IPasswordCandidate[], policy: PasswordPolicy ): IProblem2Result
 {
-    const lines = input.split( '\n' );
-    let validPasswordIndices: boolean[] = [];
-    const candidates: IPasswordPolicy1[] = convertLinesToPasswordCandidates1( lines );
+    let result: IProblem2Result = {
+        numValidPasswords: 0,
+        validPasswordIndices: []
+    }
 
-    let numValidPasswords = 0;
-    let iEntry = 0;
     candidates.forEach( candidate =>
     {
-        iEntry++;
-        const numTargetLetterAppearances = candidate.password
-            .split( '' )
-            .filter( letter => letter === candidate.targetLetter )
-            .length;
-
-        if ( numTargetLetterAppearances >= candidate.min && numTargetLetterAppearances <= candidate.max )
+        if ( policy( candidate ) )
         {
-            numValidPasswords++;
-            validPasswordIndices.push( true );
-            if ( loggingLevel === LoggingLevel.Verbose )
-                console.log( `Password #${iEntry} '${candidate.password}' is VALID` );
+            result.numValidPasswords++;
+            result.validPasswordIndices.push( true );
         }
         else
         {
-            validPasswordIndices.push( false );
-            if ( loggingLevel === LoggingLevel.Verbose )
-                console.log( `Password #${iEntry} '${candidate.password}' is NOT valid because the letter ${candidate.targetLetter} should appear ${candidate.min}-${candidate.max} times, but actually appears ${numTargetLetterAppearances} times` );
+            result.validPasswordIndices.push( false );
         }
     } );
 
-    if ( loggingLevel >= LoggingLevel.Basic )
-        console.log( `numValidPasswords = ${numValidPasswords} (out of ${validPasswordIndices.length})` );
-    return { numValidPasswords, validPasswordIndices };
+    return result;
+}
+
+const policy1: PasswordPolicy = ( candidate: IPasswordCandidate ): boolean =>
+{
+    // The target letter must appear no fewer than 'a' times and no more than 'b' times
+    const numTargetLetterAppearances = candidate.password
+        .split( '' )
+        .filter( letter => letter === candidate.targetLetter )
+        .length;
+
+    return numTargetLetterAppearances >= candidate.a
+        && numTargetLetterAppearances <= candidate.b;
+}
+
+export function problem2_part1( input: string, loggingLevel: LoggingLevel = LoggingLevel.Off ): IProblem2Result
+{
+    const candidates: IPasswordCandidate[] = convertInputToCandidates( input );
+    return validatePasswords( candidates, policy1 );
+}
+
+const policy2: PasswordPolicy = ( candidate: IPasswordCandidate ): boolean =>
+{
+    // The target letter must appear in EXACTLY one of the two 1-based indices, either 'a' or 'b'.
+    return XOR( candidate.password[candidate.a - 1] === candidate.targetLetter,
+        candidate.password[candidate.b - 1] === candidate.targetLetter );
 }
 
 export function problem2_part2( input: string, loggingLevel: LoggingLevel = LoggingLevel.Off ): IProblem2Result
 {
-    const lines = input.split( '\n' );
-    let validPasswordIndices: boolean[] = [];
-    let numValidPasswords = 0;
-    const candidates: IPasswordPolicy2[] = convertLinesToPasswordCandidates2( lines );
-
-    let iEntry = 0;
-    candidates.forEach( candidate =>
-    {
-        iEntry++;
-        if ( XOR( candidate.password[candidate.position1 - 1] === candidate.targetLetter,
-            candidate.password[candidate.position2 - 1] === candidate.targetLetter ) )
-        {
-            numValidPasswords++;
-            validPasswordIndices.push( true );
-            if ( loggingLevel === LoggingLevel.Verbose )
-                console.log( `Password #${iEntry} '${candidate.password}' is VALID` );
-        }
-        else
-        {
-            validPasswordIndices.push( false );
-            if ( loggingLevel === LoggingLevel.Verbose )
-                console.log( `Password #${iEntry} '${candidate.password}' is NOT valid because the letter ${candidate.targetLetter} should appear in exactly ONE of the two 1-based positions ${candidate.position1} XOR ${candidate.position2}` );
-        }
-    } );
-
-    return { numValidPasswords, validPasswordIndices };
+    const candidates: IPasswordCandidate[] = convertInputToCandidates( input );
+    return validatePasswords( candidates, policy2 );
 }
 
-// Shared regex
-const regex = /(\d+)-(\d+) (\w+): (\w+)/;
-
-function convertLinesToPasswordCandidates1( lines: string[] ): IPasswordPolicy1[]
+const regex = /(\d+)-(\d+) (\w): (\w+)/;
+function convertInputToCandidates( problem2Input: string ): IPasswordCandidate[]
 {
-    const entries: IPasswordPolicy1[] = lines.map( line =>
-    {
-        const matches = regex.exec( line );
-        return {
-            min: parseInt( matches[1] ),
-            max: parseInt( matches[2] ),
-            targetLetter: matches[3],
-            password: matches[4]
-        };
-    } );
-    return entries;
-}
+    const candidates: IPasswordCandidate[] = problem2Input
+        .split( '\n' )
+        .map( line =>
+        {
+            const matches = regex.exec( line );
+            return {
+                a: parseInt( matches[1] ),
+                b: parseInt( matches[2] ),
+                targetLetter: matches[3],
+                password: matches[4]
+            };
+        } );
 
-function convertLinesToPasswordCandidates2( lines: string[] ): IPasswordPolicy2[]
-{
-    const entries: IPasswordPolicy2[] = lines.map( line =>
-    {
-        const matches = regex.exec( line );
-        return {
-            position1: parseInt( matches[1] ),
-            position2: parseInt( matches[2] ),
-            targetLetter: matches[3],
-            password: matches[4]
-        };
-    } );
-    return entries;
+    return candidates;
 }
