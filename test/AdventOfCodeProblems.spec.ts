@@ -1,7 +1,7 @@
 import { expect } from "chai";
-import { PROBLEM_1_INPUT } from "../data/problemInputs";
+import { PROBLEM_1_INPUT, PROBLEM_2_INPUT } from "../data/problemInputs";
 import { problem1_part1, problem1_part2 } from '../src/problem1'
-import { problem2_part1 } from "../src/problem2";
+import { IProblem2Part1Result, problem2_part1 } from "../src/problem2";
 
 describe( 'AdventOfCode2020 Problems', () =>
 {
@@ -32,11 +32,21 @@ describe( 'AdventOfCode2020 Problems', () =>
 
     describe( 'Problem 2', () =>
     {
-        const sampleInput = [];
+        const sampleInput: string = `1-3 a: abcde
+1-3 b: cdefg
+2-9 c: ccccccccc`;
 
         it( 'Part 1 sample', () =>
         {
-            expect( problem2_part1( sampleInput ) ).to.equal( 'insertValHere' );
+            const result: IProblem2Part1Result = problem2_part1( sampleInput );
+            expect( result.numValidPasswords ).to.equal( 2 );
+            expect( result.validPasswordIndices ).to.deep.equal( [true, false, true] );
+        } );
+
+        it( 'Part 1 final', () =>
+        {
+            const result: IProblem2Part1Result = problem2_part1( PROBLEM_2_INPUT );
+            expect( result.numValidPasswords ).to.equal( 548 );
         } );
     } );
 } );
