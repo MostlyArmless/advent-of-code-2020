@@ -9,7 +9,7 @@ My solutions to the [Advent of Code 2020](https://adventofcode.com/2020) problem
 
 ## Usage
 
-`npm start` runs `/src/main.ts` which will solve each problem and print the solution
+`npm start` runs `/src/main.ts` which will solve each problem and print the solution, as well as the runtime.
 
 ## Tests
 
