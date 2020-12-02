@@ -1,21 +1,26 @@
 import { PROBLEM_1_INPUT, PROBLEM_2_INPUT } from '../data/problemInputs';
 import { problem1_part1, problem1_part2 } from './problem1';
-import { measureExecutionTime, ExecutionTimerResult } from 'func-timer'
-import { problem2_part1 } from './problem2';
-import { LoggingLevel } from './interfaces';
+import { measureExecutionTime, IExecutionTimerResult } from 'func-timer'
+import { IProblem2Result, problem2_part1, problem2_part2 } from './problem2';
 
 async function main()
 {
-    console.log( `Running all problems...` );
+    console.log( `Running all problems...\n` );
+    let timerResult: IExecutionTimerResult;
 
-    const a1_1: ExecutionTimerResult = await measureExecutionTime( problem1_part1, [PROBLEM_1_INPUT] );
-    console.log( `problem1_part1 answer = ${a1_1.functionOutput}` );
+    timerResult = await measureExecutionTime( problem1_part1, [PROBLEM_1_INPUT] );
+    console.log( `problem1_part1 answer = ${timerResult.functionOutput}\n` );
 
-    const a1_2: ExecutionTimerResult = await measureExecutionTime( problem1_part2, [PROBLEM_1_INPUT] );
-    console.log( `problem1_part2 answer = ${a1_2.functionOutput}` );
+    timerResult = await measureExecutionTime( problem1_part2, [PROBLEM_1_INPUT] );
+    console.log( `problem1_part2 answer = ${timerResult.functionOutput}\n` );
 
-    const a2_1: ExecutionTimerResult = await measureExecutionTime( problem2_part1, [PROBLEM_2_INPUT, LoggingLevel.Basic] );
-    console.log( `problem2_part1 answer = ${a2_1.functionOutput}` );
+    timerResult = await measureExecutionTime( problem2_part1, [PROBLEM_2_INPUT] );
+    const p2p1: IProblem2Result = timerResult.functionOutput;
+    console.log( `problem2_part1 answer = ${p2p1.numValidPasswords}\n` );
+
+    timerResult = await measureExecutionTime( problem2_part2, [PROBLEM_2_INPUT] );
+    const p2p2: IProblem2Result = timerResult.functionOutput;
+    console.log( `problem2_part2 answer = ${p2p2.numValidPasswords}\n` );
 }
 
 main();
