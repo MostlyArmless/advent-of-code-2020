@@ -12,6 +12,11 @@ export function problem1_part1( input: number[] ): number
 
 export function problem1_part2( input: number[] ): number
 {
+    return problem1_part2_bruteForce( input );
+}
+
+export function problem1_part2_bruteForce( input: number[] ): number
+{
     // Find {a,b,c} from elements in 'input' such that a+b+c = 2020. Return a*b*c.
     for ( let i = 0; i < input.length; i++ )
     {
