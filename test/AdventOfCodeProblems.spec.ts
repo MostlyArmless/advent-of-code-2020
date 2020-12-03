@@ -4,7 +4,7 @@ import { stringToGrid } from "../src/Grid";
 import { LoggingLevel } from "../src/interfaces";
 import { problem1_part1, problem1_part2 } from '../src/problem1'
 import { IProblem2Result, problem2_part1, problem2_part2 } from "../src/problem2";
-import { problem3_part1 } from "../src/problem3";
+import { problem3_part1, problem3_part2 } from "../src/problem3";
 
 describe( 'AdventOfCode2020 Problems', () =>
 {
@@ -134,6 +134,19 @@ describe( 'AdventOfCode2020 Problems', () =>
         {
             const numTreesEncountered = problem3_part1( PROBLEM_3_INPUT ).numTreesEncountered;
             expect( numTreesEncountered ).to.equal( 214 );
+        } );
+
+        it( 'Part 2 sample', () =>
+        {
+            const result = problem3_part2( problem3SampleInput );
+            expect( result.numTreesPerScenario ).to.deep.equal( [2, 7, 3, 4, 2] );
+            expect( result.productOfAllNumTreesEncountered ).to.equal( 336 );
+        } );
+
+        it( 'Part 2 final', () =>
+        {
+            const result = problem3_part2( PROBLEM_3_INPUT );
+            expect( result.productOfAllNumTreesEncountered ).to.equal( 8336352024 );
         } );
     } );
 } );
