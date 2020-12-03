@@ -1,8 +1,10 @@
 import { expect } from "chai";
-import { PROBLEM_1_INPUT, PROBLEM_2_INPUT } from "../data/problemInputs";
+import { PROBLEM_1_INPUT, PROBLEM_2_INPUT, PROBLEM_3_INPUT } from "../data/problemInputs";
+import { stringToGrid } from "../src/Grid";
 import { LoggingLevel } from "../src/interfaces";
 import { problem1_part1, problem1_part2 } from '../src/problem1'
 import { IProblem2Result, problem2_part1, problem2_part2 } from "../src/problem2";
+import { problem3_part1 } from "../src/problem3";
 
 describe( 'AdventOfCode2020 Problems', () =>
 {
@@ -61,6 +63,77 @@ describe( 'AdventOfCode2020 Problems', () =>
         {
             const result: IProblem2Result = problem2_part2( PROBLEM_2_INPUT, LoggingLevel.Verbose );
             expect( result.numValidPasswords ).to.equal( 502 );
+        } );
+    } );
+
+    describe( 'Problem 3', () =>
+    {
+        const problem3SampleInput: string = `..##.......
+#...#...#..
+.#....#..#.
+..#.#...#.#
+.#...##..#.
+..#.##.....
+.#.#.#....#
+.#........#
+#.##...#...
+#...##....#
+.#..#...#.#`;
+
+        it( 'Grid tiling', () =>
+        {
+            const thriceHorizontallyTiledProblem3Input = `..##.........##.........##.......
+#...#...#..#...#...#..#...#...#..
+.#....#..#..#....#..#..#....#..#.
+..#.#...#.#..#.#...#.#..#.#...#.#
+.#...##..#..#...##..#..#...##..#.
+..#.##.......#.##.......#.##.....
+.#.#.#....#.#.#.#....#.#.#.#....#
+.#........#.#........#.#........#
+#.##...#...#.##...#...#.##...#...
+#...##....##...##....##...##....#
+.#..#...#.#.#..#...#.#.#..#...#.#`;
+
+            const grid = stringToGrid( problem3SampleInput, 3 );
+            const tiledGridString = grid.toString( false, false, false );
+            console.log( `ACTUAL:\n${tiledGridString}\n\n` );
+            console.log( `EXPECTED:\n${thriceHorizontallyTiledProblem3Input}` );
+            expect( tiledGridString ).to.equal( thriceHorizontallyTiledProblem3Input );
+        } );
+
+        it( 'Grid orientation', () =>
+        {
+            const grid = stringToGrid( problem3SampleInput, 3 );
+            expect( grid.get( 0, 0 ) ).to.equal( '.' ); // Top left corner
+            expect( grid.get( 10, 0 ) ).to.equal( '.' ); // Bottom left corner
+            expect( grid.get( 0, 10 ) ).to.equal( '.' ); // Top right corner
+            expect( grid.get( 10, 10 ) ).to.equal( '#' ); // Top right corner
+        } );
+
+        it( 'Part 1 sample', () =>
+        {
+            const expectedFinalHillString = `..##.........##.........##.........##.........##.........##.......
+#..O#...#..#...#...#..#...#...#..#...#...#..#...#...#..#...#...#..
+.#....X..#..#....#..#..#....#..#..#....#..#..#....#..#..#....#..#.
+..#.#...#O#..#.#...#.#..#.#...#.#..#.#...#.#..#.#...#.#..#.#...#.#
+.#...##..#..X...##..#..#...##..#..#...##..#..#...##..#..#...##..#.
+..#.##.......#.X#.......#.##.......#.##.......#.##.......#.##.....
+.#.#.#....#.#.#.#.O..#.#.#.#....#.#.#.#....#.#.#.#....#.#.#.#....#
+.#........#.#........X.#........#.#........#.#........#.#........#
+#.##...#...#.##...#...#.X#...#...#.##...#...#.##...#...#.##...#...
+#...##....##...##....##...#X....##...##....##...##....##...##....#
+.#..#...#.#.#..#...#.#.#..#...X.#.#..#...#.#.#..#...#.#.#..#...#.#`;
+            const numTilings = 6;
+            const { numTreesEncountered, finalHillString } = problem3_part1( problem3SampleInput, numTilings, LoggingLevel.Verbose );
+
+            expect( numTreesEncountered ).to.equal( 7 );
+            expect( finalHillString ).to.equal( expectedFinalHillString );
+        } );
+
+        it( 'Part 1 final', () =>
+        {
+            const numTreesEncountered = problem3_part1( PROBLEM_3_INPUT ).numTreesEncountered;
+            expect( numTreesEncountered ).to.equal( 214 );
         } );
     } );
 } );
