@@ -1,10 +1,11 @@
 import { expect } from "chai";
-import { PROBLEM_1_INPUT, PROBLEM_2_INPUT, PROBLEM_3_INPUT } from "../data/problemInputs";
+import { PROBLEM_1_INPUT, PROBLEM_2_INPUT, PROBLEM_3_INPUT, PROBLEM_4_INPUT } from "../data/problemInputs";
 import { stringToGrid } from "../src/Grid";
 import { LoggingLevel } from "../src/interfaces";
 import { problem1_part1, problem1_part2 } from '../src/problem1'
 import { IProblem2Result, problem2_part1, problem2_part2 } from "../src/problem2";
 import { problem3_part1, problem3_part2 } from "../src/problem3";
+import { problem4_part1 } from "../src/problem4";
 
 describe( 'AdventOfCode2020 Problems', () =>
 {
@@ -147,6 +148,34 @@ describe( 'AdventOfCode2020 Problems', () =>
         {
             const result = problem3_part2( PROBLEM_3_INPUT );
             expect( result.productOfAllNumTreesEncountered ).to.equal( 8336352024 );
+        } );
+    } );
+
+    describe( 'Problem 4', () =>
+    {
+        it( 'Part 1 sample', () =>
+        {
+            const problem4SampleInput = `ecl:gry pid:860033327 eyr:2020 hcl:#fffffd
+byr:1937 iyr:2017 cid:147 hgt:183cm
+
+iyr:2013 ecl:amb cid:350 eyr:2023 pid:028048884
+hcl:#cfa07d byr:1929
+
+hcl:#ae17e1 iyr:2013
+eyr:2024
+ecl:brn pid:760753108 byr:1931
+hgt:179cm
+
+hcl:#cfa07d eyr:2025 pid:166559648
+iyr:2011 ecl:brn hgt:59in`;
+
+            expect( problem4_part1( problem4SampleInput ) ).to.equal( 2 );
+        } );
+
+        it( 'Part 1 final', () =>
+        {
+            const numValidPassports = problem4_part1( PROBLEM_4_INPUT )
+            expect( numValidPassports ).to.be.equal( 264 );
         } );
     } );
 } );
