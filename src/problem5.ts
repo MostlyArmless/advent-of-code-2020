@@ -53,16 +53,7 @@ export function problem5_part1( input: string ): number
 
 export function problem5_part2( input: string ): number
 {
-    let allSeatIds: number[] = [];
     let observedSeatIds = new Set<number>();
-
-    for ( let iRow = 0; iRow < 127; iRow++ )
-    {
-        for ( let iCol = 0; iCol < 7; iCol++ )
-        {
-            allSeatIds.push( iRow * 8 + iCol );
-        }
-    }
 
     const boardingPasses = input.split( '\n' );
     boardingPasses.forEach( boardingPass =>
@@ -71,14 +62,16 @@ export function problem5_part2( input: string ): number
         observedSeatIds.add( seat.seatId );
     } );
 
-
-    for ( let i = 0; i < allSeatIds.length; i++ )
+    for ( let iRow = 0; iRow < 127; iRow++ )
     {
-        const id = allSeatIds[i];
-        if ( !observedSeatIds.has( id )
-            && observedSeatIds.has( id - 1 )
-            && observedSeatIds.has( id + 1 )
-        )
-            return id;
+        for ( let iCol = 0; iCol < 7; iCol++ )
+        {
+            const id = iRow * 8 + iCol;
+            if ( !observedSeatIds.has( id )
+                && observedSeatIds.has( id - 1 )
+                && observedSeatIds.has( id + 1 )
+            )
+                return id;
+        }
     }
 }
