@@ -4,7 +4,7 @@ import { measureExecutionTime, IExecutionTimerResult } from 'func-timer'
 import { IProblem2Result, problem2_part1, problem2_part2 } from './problem2';
 import { IProblem3Part1Result, IProblem3Part2Result, problem3_part1, problem3_part2 } from './problem3';
 import { problem4_part1, problem4_part2 } from './problem4';
-import { problem5_part1 } from './problem5';
+import { problem5_part1, problem5_part2 } from './problem5';
 
 const startingProblem = process.argv[2] ? parseInt( process.argv[2] ) : 1;
 
@@ -60,6 +60,10 @@ async function main()
         timerResult = await measureExecutionTime( problem5_part1, [PROBLEM_5_INPUT] );
         const p5p1: number = timerResult.functionOutput;
         console.log( `problem5_part1 answer = ${p5p1}\n` );
+
+        timerResult = await measureExecutionTime( problem5_part2, [PROBLEM_5_INPUT] );
+        const p5p2: number = timerResult.functionOutput;
+        console.log( `problem5_part2 answer = ${p5p2}\n` );
     }
 }
 

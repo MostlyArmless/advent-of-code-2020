@@ -6,7 +6,7 @@ import { problem1_part1, problem1_part2 } from '../src/problem1'
 import { IProblem2Result, problem2_part1, problem2_part2 } from "../src/problem2";
 import { problem3_part1, problem3_part2 } from "../src/problem3";
 import { problem4_part1, problem4_part2 } from "../src/problem4";
-import { parseSeatId as parseBoardingPass, problem5_part1 } from "../src/problem5";
+import { parseBoardingPass, problem5_part1, problem5_part2 } from "../src/problem5";
 
 describe( 'AdventOfCode2020 Problems', () =>
 {
@@ -247,6 +247,11 @@ iyr:2010 hgt:158cm hcl:#b6652a ecl:blu byr:1944 eyr:2021 pid:093154719`;
         it( 'Part 1 final', () =>
         {
             expect( problem5_part1( PROBLEM_5_INPUT ) ).to.equal( 878 );
+        } );
+
+        it( 'Part 2 final', () =>
+        {
+            expect( problem5_part2( PROBLEM_5_INPUT ) ).to.equal( 504 );
         } );
     } );
 } );
