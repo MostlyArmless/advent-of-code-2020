@@ -9,7 +9,8 @@
   "scripts": {
     "start": "node ./build/src/main.js",
     "test": "mocha ./build/test/*spec.js",
-    "clean": "node ./scripts/clean.js"
+    "clean": "node ./scripts/clean.js",
+    "add": "node ./build/scripts/addProblem.js"
   },
   "repository": {
     "type": "git",
