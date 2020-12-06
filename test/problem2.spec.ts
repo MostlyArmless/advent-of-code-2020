@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { PROBLEM_2_INPUT } from "../data/problemInputs";
+import { PROBLEM_2_INPUT } from "../data/problem2Input";
 import { LoggingLevel } from "../src/interfaces";
 import { IProblem2Result, problem2_part1, problem2_part2 } from "../src/problem2";
 

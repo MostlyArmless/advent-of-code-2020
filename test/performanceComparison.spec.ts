@@ -1,6 +1,6 @@
 import { expect } from "chai";
 import { measureExecutionTime } from "func-timer";
-import { PROBLEM_1_INPUT } from "../data/problemInputs";
+import { PROBLEM_1_INPUT } from "../data/problem1Input";
 import { problem1_part2_bruteForce, problem1_part2_map } from "../src/problem1";
 
 const numRepetitions = 50;

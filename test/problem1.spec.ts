@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { PROBLEM_1_INPUT } from "../data/problemInputs";
+import { PROBLEM_1_INPUT } from "../data/problem1Input";
 import { problem1_part1, problem1_part2 } from "../src/problem1";
 
 describe( 'Problem 1', () =>

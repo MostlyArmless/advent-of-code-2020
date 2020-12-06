@@ -1,4 +1,3 @@
-import { PROBLEM_1_INPUT, PROBLEM_2_INPUT, PROBLEM_3_INPUT, PROBLEM_4_INPUT, PROBLEM_5_INPUT, PROBLEM_6_INPUT } from '../data/problemInputs';
 import { problem1_part1, problem1_part2 } from './problem1';
 import { measureExecutionTime, IExecutionTimerResult } from 'func-timer'
 import { IProblem2Result, problem2_part1, problem2_part2 } from './problem2';
@@ -6,6 +5,12 @@ import { IProblem3Part1Result, IProblem3Part2Result, problem3_part1, problem3_pa
 import { problem4_part1, problem4_part2 } from './problem4';
 import { problem5_part1, problem5_part2 } from './problem5';
 import { problem6_part1, problem6_part2 } from './problem6';
+import { PROBLEM_1_INPUT } from '../data/problem1Input';
+import { PROBLEM_2_INPUT } from '../data/problem2Input';
+import { PROBLEM_3_INPUT } from '../data/problem3Input';
+import { PROBLEM_4_INPUT } from '../data/problem4Input';
+import { PROBLEM_5_INPUT } from '../data/problem5Input';
+import { PROBLEM_6_INPUT } from '../data/problem6Input';
 
 const startingProblem = process.argv[2] ? parseInt( process.argv[2] ) : 1;
 
