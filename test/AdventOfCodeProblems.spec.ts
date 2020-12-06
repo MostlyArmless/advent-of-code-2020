@@ -7,7 +7,7 @@ import { IProblem2Result, problem2_part1, problem2_part2 } from "../src/problem2
 import { problem3_part1, problem3_part2 } from "../src/problem3";
 import { problem4_part1, problem4_part2 } from "../src/problem4";
 import { parseBoardingPass, problem5_part1, problem5_part2 } from "../src/problem5";
-import { problem6_part1 } from "../src/problem6";
+import { problem6_part1, problem6_part2 } from "../src/problem6";
 
 describe( 'AdventOfCode2020 Problems', () =>
 {
@@ -258,9 +258,7 @@ iyr:2010 hgt:158cm hcl:#b6652a ecl:blu byr:1944 eyr:2021 pid:093154719`;
 
     describe( 'Problem 6', () =>
     {
-        it( 'Part 1 sample', () =>
-        {
-            const problem6SampleInput = `abc
+        const problem6SampleInput = `abc
 
 a
 b
@@ -275,12 +273,19 @@ a
 a
 
 b`;
+        it( 'Part 1 sample', () =>
+        {
             expect( problem6_part1( problem6SampleInput ) ).to.equal( 11 );
         } );
 
         it( 'Part 1 final', () =>
         {
             expect( problem6_part1( PROBLEM_6_INPUT ) ).to.equal( 6532 );
+        } );
+
+        it( 'Part 2 sample', () =>
+        {
+            expect( problem6_part2( problem6SampleInput ) ).to.equal( 6 );
         } );
     } );
 } );
