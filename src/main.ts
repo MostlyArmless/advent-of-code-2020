@@ -27,7 +27,6 @@ async function main()
 
         timerResult = await measureExecutionTime( problem1_part2, [PROBLEM_1_INPUT] );
         console.log( `problem1_part2 answer = ${timerResult.functionOutput}\n` );
-
     }
 
     if ( startingProblem <= 2 )
