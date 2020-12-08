@@ -44,4 +44,24 @@ describe( 'Tree', () =>
         console.log( ancestors );
         expect( Array.from( ancestors ).sort() ).to.deep.equal( ['z', 'b', 'y', 'a', 'x'].sort() );
     } );
+
+    it( 'getNumChildren', () =>
+    {
+        const a = new Node( 'a', 0 );
+        const b = new Node( 'b', 0 );
+        const c = new Node( 'c', 0 );
+        const x = new Node( 'x', 0 );
+        const y = new Node( 'y', 0 );
+        const z = new Node( 'z', 0 );
+        a.addChild( b );
+        b.addChild( c );
+        x.addChild( y );
+        y.addChild( z );
+        z.addChild( c );
+
+        expect( a.getNumChildren() ).to.equal( 2 );
+        expect( x.getNumChildren() ).to.equal( 3 );
+        expect( b.getNumChildren() ).to.equal( 1 );
+        expect( c.getNumChildren() ).to.equal( 0 );
+    } );
 } );

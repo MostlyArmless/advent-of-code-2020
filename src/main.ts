@@ -12,7 +12,7 @@ import { PROBLEM_4_INPUT } from '../data/problem4Input';
 import { PROBLEM_5_INPUT } from '../data/problem5Input';
 import { PROBLEM_6_INPUT } from '../data/problem6Input';
 import { PROBLEM_7_INPUT } from '../data/problem7Input';
-import { IProblem7Result, problem7_part1 } from './problem7';
+import { IProblem7Part1Result, problem7_part1, problem7_part2 } from './problem7';
 
 const startingProblem = process.argv[2] ? parseInt( process.argv[2] ) : 1;
 
@@ -88,8 +88,12 @@ async function main()
     if ( startingProblem <= 7 )
     {
         timerResult = await measureExecutionTime( problem7_part1, [PROBLEM_7_INPUT, 'shiny gold'] );
-        const p7p1: IProblem7Result = timerResult.functionOutput;
+        const p7p1: IProblem7Part1Result = timerResult.functionOutput;
         console.log( `problem7_part1 answer = ${p7p1.numberOfValidContainers}\n` );
+
+        timerResult = await measureExecutionTime( problem7_part2, [PROBLEM_7_INPUT, 'shiny gold'] );
+        const p7p2: number = timerResult.functionOutput;
+        console.log( `problem7_part2 answer = ${p7p2}\n` );
     }
 }
 
