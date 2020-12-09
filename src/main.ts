@@ -13,6 +13,8 @@ import { PROBLEM_5_INPUT } from '../data/problem5Input';
 import { PROBLEM_6_INPUT } from '../data/problem6Input';
 import { PROBLEM_7_INPUT } from '../data/problem7Input';
 import { IProblem7Result, problem7_part1 } from './problem7';
+import { PROBLEM_9_INPUT } from '../data/problem9Input';
+import { problem9_part1 } from './problem9';
 
 const startingProblem = process.argv[2] ? parseInt( process.argv[2] ) : 1;
 
@@ -89,6 +91,13 @@ async function main()
         timerResult = await measureExecutionTime( problem7_part1, [PROBLEM_7_INPUT, 'shiny gold'] );
         const p7p1: IProblem7Result = timerResult.functionOutput;
         console.log( `problem7_part1 answer = ${p7p1.numberOfValidContainers}\n` );
+    }
+
+    if ( startingProblem <= 9 )
+    {
+        timerResult = await measureExecutionTime( problem9_part1, [PROBLEM_9_INPUT] );
+        const p9p1: number = timerResult.functionOutput;
+        console.log( `problem6_part1 answer = ${p9p1}\n` );
     }
 }
 
