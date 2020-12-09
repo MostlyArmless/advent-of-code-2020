@@ -1,5 +1,5 @@
 import { problem1_part1, problem1_part2 } from './problem1';
-import { measureExecutionTime, IExecutionTimerResult } from 'func-timer'
+import { measureExecutionTime, ExecutionTimerResult } from 'func-timer'
 import { IProblem2Result, problem2_part1, problem2_part2 } from './problem2';
 import { IProblem3Part1Result, IProblem3Part2Result, problem3_part1, problem3_part2 } from './problem3';
 import { problem4_part1, problem4_part2 } from './problem4';
@@ -18,7 +18,7 @@ const startingProblem = process.argv[2] ? parseInt( process.argv[2] ) : 1;
 
 async function main()
 {
-    let timerResult: IExecutionTimerResult;
+    let timerResult: ExecutionTimerResult;
 
     if ( startingProblem <= 1 )
     {
@@ -27,7 +27,6 @@ async function main()
 
         timerResult = await measureExecutionTime( problem1_part2, [PROBLEM_1_INPUT] );
         console.log( `problem1_part2 answer = ${timerResult.functionOutput}\n` );
-
     }
 
     if ( startingProblem <= 2 )
