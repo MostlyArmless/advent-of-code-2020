@@ -23,6 +23,6 @@ dotted black bags contain no other bags.`;
 
     it( 'Part 1 final', () =>
     {
-        expect( problem7_part1( PROBLEM_7_INPUT, 'shiny gold' ) ).to.equal( 272 );
+        expect( problem7_part1( PROBLEM_7_INPUT, 'shiny gold' ).numberOfValidContainers ).to.equal( 272 );
     } );
 } );

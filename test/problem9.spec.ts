@@ -1,5 +1,4 @@
 import { expect } from "chai";
-import { PROBLEM_9_INPUT } from "../data/problem9Input";
 import { problem9_part1 } from "../src/problem9";
 import { shuffle } from "../src/tools";
 
@@ -44,10 +43,10 @@ describe( 'Problem 9', () =>
             expect( problem9_part1( sampleInput + `\n${50}`, preambleLength ) ).to.equal( 50 );
         } );
 
-        it( 'Part 1 final', () =>
-        {
-            expect( problem9_part1( PROBLEM_9_INPUT, 25 ) ).to.equal( 42 );
-        } );
+        // it( 'Part 1 final', () =>
+        // {
+        //     expect( problem9_part1( PROBLEM_9_INPUT, 25 ) ).to.equal( 42 );
+        // } );
     } );
 
     describe( 'Part 1 - preamble 5', () =>

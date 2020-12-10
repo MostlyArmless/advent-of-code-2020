@@ -7,16 +7,16 @@ export function problem9_part1( input: string, preambleLength: number ): number
 
     for ( let i = 0; i < numbers.length; i++ )
     {
-        recentNumbers.unshift( numbers[i] );
-        if ( recentNumbers.length > preambleLength )
-            recentNumbers.pop();
-
-        if ( i >= preambleLength )
+        if ( recentNumbers.length >= preambleLength )
         {
             const { a, b } = Find2Sum( recentNumbers, numbers[i], true );
             if ( a === undefined && b === undefined )
                 return numbers[i];
         }
+
+        recentNumbers.unshift( numbers[i] );
+        if ( recentNumbers.length > preambleLength )
+            recentNumbers.pop();
     }
 
     return null; // Meaning all numbers in the sequence met the criterion

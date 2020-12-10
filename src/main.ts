@@ -95,7 +95,7 @@ async function main()
 
     if ( startingProblem <= 9 )
     {
-        timerResult = await measureExecutionTime( problem9_part1, [PROBLEM_9_INPUT] );
+        timerResult = await measureExecutionTime( problem9_part1, [PROBLEM_9_INPUT, 25] );
         const p9p1: number = timerResult.functionOutput;
         console.log( `problem6_part1 answer = ${p9p1}\n` );
     }
