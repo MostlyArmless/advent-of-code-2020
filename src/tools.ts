@@ -16,3 +16,15 @@ export function inRange( x: number, minInclusive: number, maxInclusive: number )
 {
     return minInclusive <= x && x <= maxInclusive;
 }
+
+// Combine the contents of multiple existing sets into one, efficiently
+export function concatSets<T>( setToConcatInto: Set<T>, ...otherSets ): void
+{
+    for ( const otherSet of otherSets )
+    {
+        for ( const element of otherSet )
+        {
+            setToConcatInto.add( element );
+        }
+    }
+}
