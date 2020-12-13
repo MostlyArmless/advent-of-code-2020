@@ -17,14 +17,22 @@ export function inRange( x: number, minInclusive: number, maxInclusive: number )
     return minInclusive <= x && x <= maxInclusive;
 }
 
-// Combine the contents of multiple existing sets into one, efficiently
-export function concatSets<T>( setToConcatInto: Set<T>, ...otherSets ): void
+export function shuffle( array: any[] ): any[]
 {
-    for ( const otherSet of otherSets )
+    var currentIndex = array.length, temporaryValue, randomIndex;
+
+    // While there remain elements to shuffle...
+    while ( 0 !== currentIndex )
     {
-        for ( const element of otherSet )
-        {
-            setToConcatInto.add( element );
-        }
+        // Pick a remaining element...
+        randomIndex = Math.floor( Math.random() * currentIndex );
+        currentIndex -= 1;
+
+        // And swap it with the current element.
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
     }
+
+    return array;
 }

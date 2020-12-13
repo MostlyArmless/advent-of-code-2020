@@ -1,5 +1,5 @@
 import { problem1_part1, problem1_part2 } from './problem1';
-import { measureExecutionTime, IExecutionTimerResult } from 'func-timer'
+import { measureExecutionTime, ExecutionTimerResult } from 'func-timer'
 import { IProblem2Result, problem2_part1, problem2_part2 } from './problem2';
 import { IProblem3Part1Result, IProblem3Part2Result, problem3_part1, problem3_part2 } from './problem3';
 import { problem4_part1, problem4_part2 } from './problem4';
@@ -15,12 +15,14 @@ import { PROBLEM_7_INPUT } from '../data/problem7Input';
 import { IProblem7Part1Result, problem7_part1, problem7_part2 } from './problem7';
 import { PROBLEM_8_INPUT } from '../data/problem8Input';
 import { problem8_part1, problem8_part2 } from './problem8';
+import { PROBLEM_9_INPUT } from '../data/problem9Input';
+import { problem9_part1, problem9_part2 } from './problem9';
 
 const startingProblem = process.argv[2] ? parseInt( process.argv[2] ) : 1;
 
 async function main()
 {
-    let timerResult: IExecutionTimerResult;
+    let timerResult: ExecutionTimerResult;
 
     if ( startingProblem <= 1 )
     {
@@ -106,6 +108,17 @@ async function main()
         timerResult = await measureExecutionTime( problem8_part2, [PROBLEM_8_INPUT] );
         const p8p2: number = timerResult.functionOutput;
         console.log( `problem8_part2 answer = ${p8p2}\n` );
+    }
+
+    if ( startingProblem <= 9 )
+    {
+        timerResult = await measureExecutionTime( problem9_part1, [PROBLEM_9_INPUT, 25] );
+        const p9p1: number = timerResult.functionOutput;
+        console.log( `problem9_part1 answer = ${p9p1}\n` );
+
+        timerResult = await measureExecutionTime( problem9_part2, [PROBLEM_9_INPUT, 25] );
+        const p9p2: number = timerResult.functionOutput;
+        console.log( `problem9_part2 answer = ${p9p2}\n` );
     }
 }
 
