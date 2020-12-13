@@ -1,4 +1,4 @@
-import { Node, ParentNodeName, } from "./Node";
+import { TreeNode, ParentNodeName, } from "./TreeNode";
 
 export interface IProblem7Part1Result
 {
@@ -11,12 +11,12 @@ type BagType = string;
 type QuantityOfThisInParent = number;
 type NumChildren = number;
 type ParentQuantityMap = Map<ParentNodeName, QuantityOfThisInParent>;
-type BagMap1 = Map<BagType, Node<ParentQuantityMap>>;
+type BagMap1 = Map<BagType, TreeNode<ParentQuantityMap>>;
 
 function buildBagNetwork1( bagRules: string, targetBagName: string ): IProblem7Part1Result
 {
-    let node = new Node<ParentQuantityMap>( 'Dummy', new Map<ParentNodeName, QuantityOfThisInParent>() );
-    let bagMap: BagMap1 = new Map<BagType, Node<ParentQuantityMap>>();
+    let node = new TreeNode<ParentQuantityMap>( 'Dummy', new Map<ParentNodeName, QuantityOfThisInParent>() );
+    let bagMap: BagMap1 = new Map<BagType, TreeNode<ParentQuantityMap>>();
 
     bagRules.split( '\n' ).forEach( ( line, iLine, lines ) =>
     {
@@ -26,7 +26,7 @@ function buildBagNetwork1( bagRules: string, targetBagName: string ): IProblem7P
             node = bagMap.get( parentBagName );
         else
         {
-            node = new Node( parentBagName, new Map<ParentNodeName, QuantityOfThisInParent>() );
+            node = new TreeNode( parentBagName, new Map<ParentNodeName, QuantityOfThisInParent>() );
             bagMap.set( parentBagName, node );
         }
 
@@ -39,7 +39,7 @@ function buildBagNetwork1( bagRules: string, targetBagName: string ): IProblem7P
             const match2 = /(\d+) (\w+ \w+) bags?/.exec( childString );
             const childBagName = match2[2];
             const quantity = parseInt( match2[1] );
-            let childNode: Node<ParentQuantityMap> = bagMap.has( childBagName ) ? bagMap.get( childBagName ) : new Node( childBagName, new Map<ParentNodeName, QuantityOfThisInParent>( [[parentBagName, quantity]] ) );
+            let childNode: TreeNode<ParentQuantityMap> = bagMap.has( childBagName ) ? bagMap.get( childBagName ) : new TreeNode( childBagName, new Map<ParentNodeName, QuantityOfThisInParent>( [[parentBagName, quantity]] ) );
             bagMap.set( childBagName, childNode );
             node.addChild( childNode );
         } );

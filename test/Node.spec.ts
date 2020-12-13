@@ -1,12 +1,12 @@
 import { expect } from "chai";
-import { Node } from "../src/Node";
+import { TreeNode } from "../src/TreeNode";
 
 describe( 'Tree', () =>
 {
     it( 'Add Parent', () =>
     {
-        const a = new Node( 'a', 0 );
-        const b = new Node( 'b', 0 );
+        const a = new TreeNode( 'a', 0 );
+        const b = new TreeNode( 'b', 0 );
         b.addParent( a );
         expect( a.children.map( child => child.name ) ).to.deep.equal( ['b'] );
         expect( b.parents.map( parent => parent.name ) ).to.deep.equal( ['a'] );
@@ -14,9 +14,9 @@ describe( 'Tree', () =>
 
     it( 'Add Parent 3 gens', () =>
     {
-        const a = new Node( 'a', 0 );
-        const b = new Node( 'b', 0 );
-        const c = new Node( 'c', 0 );
+        const a = new TreeNode( 'a', 0 );
+        const b = new TreeNode( 'b', 0 );
+        const c = new TreeNode( 'c', 0 );
         c.addParent( b );
         b.addParent( a );
         expect( a.children.map( child => child.name ) ).to.deep.equal( ['b'] );
@@ -28,12 +28,12 @@ describe( 'Tree', () =>
 
     it( 'Get all ancestor names', () =>
     {
-        const a = new Node( 'a', 0 );
-        const b = new Node( 'b', 0 );
-        const c = new Node( 'c', 0 );
-        const x = new Node( 'x', 0 );
-        const y = new Node( 'y', 0 );
-        const z = new Node( 'z', 0 );
+        const a = new TreeNode( 'a', 0 );
+        const b = new TreeNode( 'b', 0 );
+        const c = new TreeNode( 'c', 0 );
+        const x = new TreeNode( 'x', 0 );
+        const y = new TreeNode( 'y', 0 );
+        const z = new TreeNode( 'z', 0 );
         a.addChild( b );
         b.addChild( c );
         x.addChild( y );
@@ -47,12 +47,12 @@ describe( 'Tree', () =>
 
     it( 'getNumChildren', () =>
     {
-        const a = new Node( 'a', 0 );
-        const b = new Node( 'b', 0 );
-        const c = new Node( 'c', 0 );
-        const x = new Node( 'x', 0 );
-        const y = new Node( 'y', 0 );
-        const z = new Node( 'z', 0 );
+        const a = new TreeNode( 'a', 0 );
+        const b = new TreeNode( 'b', 0 );
+        const c = new TreeNode( 'c', 0 );
+        const x = new TreeNode( 'x', 0 );
+        const y = new TreeNode( 'y', 0 );
+        const z = new TreeNode( 'z', 0 );
         a.addChild( b );
         b.addChild( c );
         x.addChild( y );

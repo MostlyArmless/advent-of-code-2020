@@ -1,10 +1,10 @@
 export type ParentNodeName = string;
 export type NodeName = string;
 
-export class Node<ValType>
+export class TreeNode<ValType>
 {
-    parents: Node<ValType>[];
-    children: Node<ValType>[];
+    parents: TreeNode<ValType>[];
+    children: TreeNode<ValType>[];
     name: string;
     value: ValType;
 
@@ -16,13 +16,13 @@ export class Node<ValType>
         this.value = value;
     }
 
-    addParent( myNewParent: Node<ValType> ): void
+    addParent( myNewParent: TreeNode<ValType> ): void
     {
         this.parents.push( myNewParent );
         myNewParent.children.push( this );
     }
 
-    addChild( myNewChild: Node<ValType> ): void
+    addChild( myNewChild: TreeNode<ValType> ): void
     {
         if ( !myNewChild )
             throw new Error( "Attempting to add undefined node to network" );
@@ -68,7 +68,7 @@ export class Node<ValType>
     }
 
     // Includes itself as a possible matching child
-    findAllMatchingChildren( name: NodeName, nodes: Node<ValType>[] = [] ): Node<ValType>[]
+    findAllMatchingChildren( name: NodeName, nodes: TreeNode<ValType>[] = [] ): TreeNode<ValType>[]
     {
         if ( this.name === name )
             nodes.push( this );
@@ -89,7 +89,7 @@ export class Node<ValType>
         {
             for ( let i = 0; i < numCopiesToAdd; i++ )
             {
-                this.addChild( new Node<ValType>( childToAdd, childValue ) );
+                this.addChild( new TreeNode<ValType>( childToAdd, childValue ) );
                 numChildrenAdded++
             }
         }
@@ -105,7 +105,7 @@ export class Node<ValType>
         return numChildrenAdded;
     }
 
-    getRootNodes( rootNodes?: Node<ValType>[] ): Node<ValType>[]
+    getRootNodes( rootNodes?: TreeNode<ValType>[] ): TreeNode<ValType>[]
     {
         if ( this.parents.length === 0 )
         {
