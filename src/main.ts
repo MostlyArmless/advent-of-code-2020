@@ -19,6 +19,8 @@ import { PROBLEM_9_INPUT } from '../data/problem9Input';
 import { problem9_part1, problem9_part2 } from './problem9';
 import { PROBLEM_10_INPUT } from '../data/problem10Input';
 import { problem10_part1 } from './problem10';
+import { PROBLEM_11_INPUT } from '../data/problem11Input';
+import { problem11_part1 } from './problem11';
 
 const startingProblem = process.argv[2] ? parseInt( process.argv[2] ) : 1;
 
@@ -128,6 +130,13 @@ async function main()
         timerResult = await measureExecutionTime( problem10_part1, [PROBLEM_10_INPUT] );
         const p10p1: number = timerResult.functionOutput;
         console.log( `problem6_part1 answer = ${p10p1}\n` );
+    }
+
+    if ( startingProblem <= 11 )
+    {
+        timerResult = await measureExecutionTime( problem11_part1, [PROBLEM_11_INPUT] );
+        const p11p1: number = timerResult.functionOutput;
+        console.log( `problem6_part1 answer = ${p11p1}\n` );
     }
 }
 
