@@ -1,5 +1,5 @@
-import { Grid, stringToGrid } from "./Grid";
-import { LoggingLevel } from "./interfaces";
+import { Grid, stringToGrid } from "../Grid";
+import { LoggingLevel } from "../interfaces";
 
 enum SeatState
 {

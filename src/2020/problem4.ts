@@ -1,4 +1,4 @@
-import { inRange } from "./tools";
+import { inRange } from "../tools";
 
 const validEyeColors: Set<string> = new Set( [
     'amb',

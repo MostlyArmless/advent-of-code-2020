@@ -1,7 +1,7 @@
 import { expect } from "chai";
-import { PROBLEM_11_INPUT } from "../data/problem11Input";
-import { stringToGrid } from "../src/Grid";
-import { calculateNumOccupiedVisibleSeats, problem11_part1, problem11_part2 } from "../src/problem11";
+import { PROBLEM_11_INPUT } from "../../data/2020/problem11Input";
+import { stringToGrid } from "../../src/Grid";
+import { calculateNumOccupiedVisibleSeats, problem11_part1, problem11_part2 } from "../../src/2020/problem11";
 
 describe( 'Problem 11', () =>
 {

@@ -1,6 +1,6 @@
 import { expect } from "chai";
-import { PROBLEM_10_INPUT } from "../data/problem10Input";
-import { buildAdapterDifferenceMap, problem10_part1 } from "../src/problem10";
+import { PROBLEM_10_INPUT } from "../../data/2020/problem10Input";
+import { buildAdapterDifferenceMap, problem10_part1 } from "../../src/2020/problem10";
 
 describe( 'Problem 10', () =>
 {

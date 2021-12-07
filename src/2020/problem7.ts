@@ -1,4 +1,4 @@
-import { TreeNode, ParentNodeName, } from "./TreeNode";
+import { TreeNode, ParentNodeName, } from "../TreeNode";
 
 export interface IProblem7Part1Result
 {

@@ -1,5 +1,5 @@
-import { LoggingLevel } from "./interfaces";
-import { XOR } from "./tools";
+import { LoggingLevel } from "../interfaces";
+import { XOR } from "../tools";
 
 interface IPasswordCandidate
 {

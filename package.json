@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "node ./build/src/main.js",
-    "test": "ts-mocha ./test/*spec.ts",
+    "test": "ts-mocha ./test/**/*spec.ts",
     "clean": "node ./scripts/clean.js",
     "add": "node ./build/scripts/addProblem.js"
   },

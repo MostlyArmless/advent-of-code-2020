@@ -1,6 +1,6 @@
-import { Coordinate } from "./Coord";
-import { Grid, stringToGrid } from "./Grid";
-import { LoggingLevel } from "./interfaces";
+import { Coordinate } from "../Coord";
+import { Grid, stringToGrid } from "../Grid";
+import { LoggingLevel } from "../interfaces";
 enum HillContents
 {
     Empty = '.',

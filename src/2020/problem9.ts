@@ -1,4 +1,4 @@
-import { Find2Sum } from "./TwoSum";
+import { Find2Sum } from "../TwoSum";
 
 function findFirstNumInSequenceThatIsNotTheSumOf2RecentElements( numbers: number[], preambleLength: number ): number
 {

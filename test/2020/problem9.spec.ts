@@ -1,7 +1,7 @@
 import { expect } from "chai";
-import { PROBLEM_9_INPUT } from "../data/problem9Input";
-import { problem9_part1, problem9_part2 } from "../src/problem9";
-import { shuffle } from "../src/tools";
+import { PROBLEM_9_INPUT } from "../../data/2020/problem9Input";
+import { problem9_part1, problem9_part2 } from "../../src/2020/problem9";
+import { shuffle } from "../../src/tools";
 
 describe( 'Problem 9', () =>
 {

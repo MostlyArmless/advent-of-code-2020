@@ -1,7 +1,6 @@
 import { expect } from "chai";
-import { PROBLEM_8_INPUT } from "../data/problem8Input";
-// import { PROBLEM_8_INPUT } from "../data/problem8Input";
-import { problem8_part1, problem8_part2 } from "../src/problem8";
+import { PROBLEM_8_INPUT } from "../../data/2020/problem8Input";
+import { problem8_part1, problem8_part2 } from "../../src/2020/problem8";
 
 describe( 'Problem 8', () =>
 {

@@ -1,8 +1,8 @@
 import { expect } from "chai";
-import { PROBLEM_3_INPUT } from "../data/problem3Input";
-import { stringToGrid } from "../src/Grid";
-import { LoggingLevel } from "../src/interfaces";
-import { problem3_part1, problem3_part2 } from "../src/problem3";
+import { PROBLEM_3_INPUT } from "../../data/2020/problem3Input";
+import { stringToGrid } from "../../src/Grid";
+import { LoggingLevel } from "../../src/interfaces";
+import { problem3_part1, problem3_part2 } from "../../src/2020/problem3";
 
 describe( 'Problem 3', () =>
 {
