@@ -12,8 +12,8 @@ if (![2020,2021].includes(year))
 
 const mainFileName = "./src/main.ts";
 const solutionFileName = `./src/${year}/problem${problemNumber}.ts`;
-const inputFileName = `./data/problem${problemNumber}Input.ts`;
-const testFileName = `./test/problem${problemNumber}.spec.ts`;
+const inputFileName = `./data//${year}/problem${problemNumber}Input.ts`;
+const testFileName = `./test/${year}/problem${problemNumber}.spec.ts`;
 
 if ( fse.existsSync( solutionFileName )
     || fse.existsSync( inputFileName )
@@ -54,8 +54,8 @@ fse.writeFileSync( inputFileName, `export const PROBLEM_${problemNumber}_INPUT =
 
 // add test cases
 const testFileContents = `import { expect } from "chai";
-import { PROBLEM_${problemNumber}_INPUT } from "../data/problem${problemNumber}Input";
-import { problem${problemNumber}_part1 } from "../src/problem${problemNumber}";
+import { PROBLEM_${problemNumber}_INPUT } from "../../data/${year}/problem${problemNumber}Input";
+import { problem${problemNumber}_part1 } from "../../src/${year}/problem${problemNumber}";
 
 describe( 'Problem ${problemNumber}', () =>
 {
