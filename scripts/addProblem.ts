@@ -1,12 +1,17 @@
 import * as fse from 'fs-extra'
 
-// Run this script like "npm run add -- 7"
+// Run this script like "npm run add -- 7 2021"
 const problemNumber = parseInt( process.argv[2] );
+const year = parseInt(process.argv[3]);
+
 if ( !problemNumber || problemNumber < 1 || problemNumber > 25 )
     throw new Error( `Invalid problem number: ${problemNumber}` );
 
+if (![2020,2021].includes(year))
+    throw new Error(`Invalid year: ${year}`);
+
 const mainFileName = "./src/main.ts";
-const solutionFileName = `./src/problem${problemNumber}.ts`;
+const solutionFileName = `./src/${year}/problem${problemNumber}.ts`;
 const inputFileName = `./data/problem${problemNumber}Input.ts`;
 const testFileName = `./test/problem${problemNumber}.spec.ts`;
 
@@ -23,7 +28,7 @@ const textToAppendToMain = `
     {
         timerResult = await measureExecutionTime( problem${problemNumber}_part1, [PROBLEM_${problemNumber}_INPUT] );
         const p${problemNumber}p1: number = timerResult.functionOutput;
-        console.log( \`problem6_part1 answer = \${ p${problemNumber}p1 }\\n\` );
+        console.log( \`problem${problemNumber}_part1 answer = \${ p${problemNumber}p1 }\\n\` );
     }
 `;
 let mainContents = fse.readFileSync( mainFileName ).toString();
