@@ -1,10 +1,10 @@
-import { problem1_part1, problem1_part2 } from './problem1';
-import { measureExecutionTime, IExecutionTimerResult } from 'func-timer'
-import { IProblem2Result, problem2_part1, problem2_part2 } from './problem2';
-import { IProblem3Part1Result, IProblem3Part2Result, problem3_part1, problem3_part2 } from './problem3';
-import { problem4_part1, problem4_part2 } from './problem4';
-import { problem5_part1, problem5_part2 } from './problem5';
-import { problem6_part1, problem6_part2 } from './problem6';
+import { problem1_part1, problem1_part2 } from './2020/problem1';
+import { ExecutionTimerResult, measureExecutionTime } from 'func-timer'
+import { IProblem2Result, problem2_part1, problem2_part2 } from './2020/problem2';
+import { IProblem3Part1Result, IProblem3Part2Result, problem3_part1, problem3_part2 } from './2020/problem3';
+import { problem4_part1, problem4_part2 } from './2020/problem4';
+import { problem5_part1, problem5_part2 } from './2020/problem5';
+import { problem6_part1, problem6_part2 } from './2020/problem6';
 import { PROBLEM_1_INPUT } from '../data/problem1Input';
 import { PROBLEM_2_INPUT } from '../data/problem2Input';
 import { PROBLEM_3_INPUT } from '../data/problem3Input';
@@ -12,21 +12,21 @@ import { PROBLEM_4_INPUT } from '../data/problem4Input';
 import { PROBLEM_5_INPUT } from '../data/problem5Input';
 import { PROBLEM_6_INPUT } from '../data/problem6Input';
 import { PROBLEM_7_INPUT } from '../data/problem7Input';
-import { IProblem7Part1Result, problem7_part1, problem7_part2 } from './problem7';
+import { IProblem7Part1Result, problem7_part1, problem7_part2 } from './2020/problem7';
 import { PROBLEM_8_INPUT } from '../data/problem8Input';
-import { problem8_part1, problem8_part2 } from './problem8';
+import { problem8_part1, problem8_part2 } from './2020/problem8';
 import { PROBLEM_9_INPUT } from '../data/problem9Input';
-import { problem9_part1, problem9_part2 } from './problem9';
+import { problem9_part1, problem9_part2 } from './2020/problem9';
 import { PROBLEM_10_INPUT } from '../data/problem10Input';
-import { problem10_part1 } from './problem10';
+import { problem10_part1 } from './2020/problem10';
 import { PROBLEM_11_INPUT } from '../data/problem11Input';
-import { problem11_part1, problem11_part2 } from './problem11';
+import { problem11_part1, problem11_part2 } from './2020/problem11';
 
 const startingProblem = process.argv[2] ? parseInt( process.argv[2] ) : 1;
 
 async function main()
 {
-    let timerResult: IExecutionTimerResult;
+    let timerResult: ExecutionTimerResult;
 
     if ( startingProblem <= 1 )
     {

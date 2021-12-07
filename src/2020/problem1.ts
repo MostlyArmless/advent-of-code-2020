@@ -1,4 +1,4 @@
-import { Find2Sum } from "./TwoSum";
+import { Find2Sum } from "../TwoSum";
 
 export function problem1_part1( input: number[] ): number
 {
