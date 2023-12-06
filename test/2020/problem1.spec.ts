@@ -8,21 +8,21 @@ describe( 'Problem 1', () =>
 
     it( 'Part 1 sample', () =>
     {
-        expect( problem1_part1( sampleInput ) ).to.equal( 514579 );
+        expect( parseInt(problem1_part1( sampleInput ).answer) ).to.equal( 514579 );
     } );
 
     it( 'Part 1 final', async () =>
     {
-        expect( problem1_part1( PROBLEM_1_INPUT ) ).to.equal( 864864 );
+        expect( parseInt(problem1_part1( PROBLEM_1_INPUT ).answer) ).to.equal( 864864 );
     } );
 
     it( 'Part 2 sample', () =>
     {
-        expect( problem1_part2( sampleInput ) ).to.equal( 241861950 );
+        expect( parseInt(problem1_part2( sampleInput ).answer) ).to.equal( 241861950 );
     } );
 
     it( 'Part 2 final', async () =>
     {
-        expect( problem1_part2( PROBLEM_1_INPUT ) ).to.equal( 281473080 );
+        expect( parseInt(problem1_part2( PROBLEM_1_INPUT ).answer) ).to.equal( 281473080 );
     } );
 } );

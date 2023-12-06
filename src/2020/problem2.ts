@@ -1,4 +1,4 @@
-import { LoggingLevel } from "../interfaces";
+import { AdventOfCodeAnswer, LoggingLevel } from "../interfaces";
 import { XOR } from "../tools";
 
 interface IPasswordCandidate
@@ -52,12 +52,6 @@ const policy1: PasswordPolicy = ( candidate: IPasswordCandidate ): boolean =>
         && numTargetLetterAppearances <= candidate.b;
 }
 
-export function problem2_part1( input: string, loggingLevel: LoggingLevel = LoggingLevel.Off ): IProblem2Result
-{
-    const candidates: IPasswordCandidate[] = convertInputToCandidates( input );
-    return validatePasswords( candidates, policy1 );
-}
-
 const policy2: PasswordPolicy = ( candidate: IPasswordCandidate ): boolean =>
 {
     // The target letter must appear in EXACTLY one of the two 1-based indices, either 'a' or 'b'.
@@ -65,10 +59,34 @@ const policy2: PasswordPolicy = ( candidate: IPasswordCandidate ): boolean =>
         candidate.password[candidate.b - 1] === candidate.targetLetter );
 }
 
-export function problem2_part2( input: string, loggingLevel: LoggingLevel = LoggingLevel.Off ): IProblem2Result
+export function problem2_part1_internal(input: string, loggingLevel: LoggingLevel = LoggingLevel.Off ): IProblem2Result
+{
+    const candidates: IPasswordCandidate[] = convertInputToCandidates( input );
+    return validatePasswords( candidates, policy1 );
+}
+
+export function problem2_part1( input: string ): AdventOfCodeAnswer
+{
+    const result = problem2_part1_internal(input);
+    return {
+        answer: result.numValidPasswords.toString(),
+        description: 'Number of valid password according to policy1'
+    };
+}
+
+export function problem2_part2_internal( input: string, loggingLevel: LoggingLevel = LoggingLevel.Off ): IProblem2Result
 {
     const candidates: IPasswordCandidate[] = convertInputToCandidates( input );
     return validatePasswords( candidates, policy2 );
+}
+
+export function problem2_part2( input: string ): AdventOfCodeAnswer
+{
+    const result = problem2_part2_internal(input);
+    return {
+        answer: result.numValidPasswords.toString(),
+        description: 'Number of valid passwords according to policy2'
+    };
 }
 
 const regex = /(\d+)-(\d+) (\w): (\w+)/;
