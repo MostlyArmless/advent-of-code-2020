@@ -24,5 +24,8 @@ export function problem6_part1(input: Y2023P6Input): number {
 }
 
 export function problem6_part2(input: Y2023P6Input): number {
-    return 0;
+    input.time = [parseInt(input.time.map(n => n.toString()).reduce((s1, s2) => s1 + s2))];
+    input.distance = [parseInt(input.distance.map(n => n.toString()).reduce((s1, s2) => s1 + s2))];
+
+    return problem6_part1(input);
 }
