@@ -1,8 +1,8 @@
 import * as fse from 'fs-extra'
 
-// Run this script like "npm run add -- 7 2021"
-const problemNumber = parseInt(process.argv[2]);
-const year = parseInt(process.argv[3]);
+// Run this script like "npm run add -- 2023 6"
+const year = parseInt(process.argv[2]);
+const problemNumber = parseInt(process.argv[3]);
 
 if (!problemNumber || problemNumber < 1 || problemNumber > 25)
     throw new Error(`Invalid problem number: ${problemNumber}`);
