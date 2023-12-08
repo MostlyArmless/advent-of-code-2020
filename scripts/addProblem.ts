@@ -10,7 +10,6 @@ if (!problemNumber || problemNumber < 1 || problemNumber > 25)
 if (![2020, 2021, 2023].includes(year))
     throw new Error(`Invalid year: ${year}`);
 
-const mainFileName = "./src/main.ts";
 const solutionFileName = `./src/${year}/problem${problemNumber}.ts`;
 const inputFileName = `./data//${year}/problem${problemNumber}Input.ts`;
 const testFileName = `./test/${year}/problem${problemNumber}.spec.ts`;
@@ -21,31 +20,15 @@ if (fse.existsSync(solutionFileName)
 )
     throw new Error(`ABORTING: At least one of the files already exists for problem ${problemNumber}`);
 
-// Append contents to main.ts
-const textToAppendToMain = `
-
-    if (startingProblem <= ${problemNumber})
-    {
-        timerResult = await measureExecutionTime( problem${problemNumber}_part1, [PROBLEM_${problemNumber}_INPUT] );
-        const p${problemNumber}p1: number = timerResult.functionOutput;
-        console.log( \`problem${problemNumber}_part1 answer = \${ p${problemNumber}p1 }\\n\` );
-    }
-`;
-let mainContents = fse.readFileSync(mainFileName).toString();
-
-const lines = mainContents.split('\n');
-const updatedMainContents = lines.slice(0, lines.length - 3).join('\n') + textToAppendToMain + lines.slice(lines.length - 3, lines.length).join('\n');
-fse.writeFileSync(mainFileName, updatedMainContents);
-
 // Create solution file
 const solutionFileContents = `export function problem${problemNumber}_part1( input: string ): number
 {
-
+    return 0;
 }
 
 export function problem${problemNumber}_part2( input: string ): number
 {
-
+    return 0;
 }`;
 fse.writeFileSync(solutionFileName, solutionFileContents);
 
@@ -53,7 +36,7 @@ fse.writeFileSync(solutionFileName, solutionFileContents);
 fse.writeFileSync(inputFileName, `export const PROBLEM_${problemNumber}_INPUT = \`\`;`);
 
 // add test cases
-const testFileContents = `import { expect } from "chai";
+const testFileContents = `
 import { PROBLEM_${problemNumber}_INPUT } from "../../data/${year}/problem${problemNumber}Input";
 import { problem${problemNumber}_part1 } from "../../src/${year}/problem${problemNumber}";
 
@@ -63,12 +46,12 @@ describe( 'Problem ${problemNumber}', () =>
 
     it( 'Part 1 sample', () =>
     {
-        expect( problem${problemNumber}_part1( problem${problemNumber}SampleInput ) ).to.equal( 42 );
+        expect( problem${problemNumber}_part1( problem${problemNumber}SampleInput ) ).toEqual( 42 );
     } );
 
     it( 'Part 1 final', () =>
     {
-        expect( problem${problemNumber}_part1( PROBLEM_${problemNumber}_INPUT ) ).to.equal( 42 );
+        expect( problem${problemNumber}_part1( PROBLEM_${problemNumber}_INPUT ) ).toEqual( 42 );
     } );
 } );`;
 fse.writeFileSync(testFileName, testFileContents);

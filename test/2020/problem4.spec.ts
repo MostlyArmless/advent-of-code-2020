@@ -1,11 +1,9 @@
-import { expect } from "chai";
+
 import { PROBLEM_4_INPUT } from "../../data/2020/problem4Input";
 import { problem4_part1, problem4_part2 } from "../../src/2020/problem4";
 
-describe( 'Problem 4', () =>
-{
-    it( 'Part 1 sample', () =>
-    {
+describe('Problem 4', () => {
+    it('Part 1 sample', () => {
         const problem4SampleInput = `ecl:gry pid:860033327 eyr:2020 hcl:#fffffd
 byr:1937 iyr:2017 cid:147 hgt:183cm
 
@@ -20,17 +18,15 @@ hgt:179cm
 hcl:#cfa07d eyr:2025 pid:166559648
 iyr:2011 ecl:brn hgt:59in`;
 
-        expect( problem4_part1( problem4SampleInput ) ).to.equal( 2 );
-    } );
+        expect(problem4_part1(problem4SampleInput)).toEqual(2);
+    });
 
-    it( 'Part 1 final', () =>
-    {
-        const numValidPassports = problem4_part1( PROBLEM_4_INPUT )
-        expect( numValidPassports ).to.be.equal( 264 );
-    } );
+    it('Part 1 final', () => {
+        const numValidPassports = problem4_part1(PROBLEM_4_INPUT)
+        expect(numValidPassports).toEqual(264);
+    });
 
-    it( 'Part 2 sample invalid passports', () =>
-    {
+    it('Part 2 sample invalid passports', () => {
         const invalids = `eyr:1972 cid:100
 hcl:#18171d ecl:amb hgt:170 pid:186cm iyr:2018 byr:1926
 
@@ -45,11 +41,10 @@ hgt:59cm ecl:zzz
 eyr:2038 hcl:74454a iyr:2023
 pid:3556412378 byr:2007`;
 
-        expect( problem4_part2( invalids ) ).to.equal( 0 );
-    } );
+        expect(problem4_part2(invalids)).toEqual(0);
+    });
 
-    it( 'Part 2 sample valid passports', () =>
-    {
+    it('Part 2 sample valid passports', () => {
         const valids = `pid:087499704 hgt:74in ecl:grn iyr:2012 eyr:2030 byr:1980
 hcl:#623a2f
 
@@ -63,11 +58,10 @@ eyr:2022
 
 iyr:2010 hgt:158cm hcl:#b6652a ecl:blu byr:1944 eyr:2021 pid:093154719`;
 
-        expect( problem4_part2( valids ) ).to.equal( 4 );
-    } );
+        expect(problem4_part2(valids)).toEqual(4);
+    });
 
-    it( 'Part 2 final', () =>
-    {
-        expect( problem4_part2( PROBLEM_4_INPUT ) ).to.equal( 224 );
-    } );
-} );
+    it('Part 2 final', () => {
+        expect(problem4_part2(PROBLEM_4_INPUT)).toEqual(224);
+    });
+});

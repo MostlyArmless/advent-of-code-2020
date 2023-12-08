@@ -1,1 +1,0 @@
-export const PROBLEM_1_INPUT = ``;
