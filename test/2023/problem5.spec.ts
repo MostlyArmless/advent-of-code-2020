@@ -42,6 +42,6 @@ humidity-to-location map:
     });
 
     it('Part 1 final', () => {
-        expect(problem5_part1(PROBLEM_5_INPUT)).toEqual(42);
+        expect(problem5_part1(PROBLEM_5_INPUT)).toEqual(26273516);
     });
 });

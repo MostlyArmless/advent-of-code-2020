@@ -14,7 +14,7 @@ export function problem5_part1(input: string): number {
   // Load the mappings from the input
   lines.forEach(line => {
     if (line.startsWith('seeds:')) {
-      seeds = line.split(' ').map(s => parseInt(s));
+      seeds = line.split(' ').map(s => parseInt(s)).filter(n => !isNaN(n));
     } else if (isDigit(line[0])) {
       const numStrs = line.split(' ');
       const rangeRule: RangeRule = {
