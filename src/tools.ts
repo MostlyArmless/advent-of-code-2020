@@ -44,3 +44,14 @@ export function setIntersection<T>(setA: Set<T>, setB: Set<T>): Set<T> {
 
     return intersection;
 }
+
+export function reportProgress(startTime: [number, number], i: number, total: number) {
+    const elapsed = process.hrtime(startTime);
+    const elapsedSeconds = elapsed[0];
+    const elapsedMilliseconds = (elapsed[1] / 1000000).toFixed(0); // divide by a million to get nano to milli
+    const percent = (i / total * 100).toFixed(1);
+    const velocity = i / elapsedSeconds; // iterations per second
+    const remainingIterations = total - i; // iterations
+    const remainingTime = remainingIterations / velocity; // seconds
+    console.log(`On iteration ${i} of ${total} (${percent}%) after ${elapsedSeconds}.${elapsedMilliseconds} seconds, ${remainingTime} seconds remaining...`); // print message + time
+}

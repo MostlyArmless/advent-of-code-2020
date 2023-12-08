@@ -1,6 +1,6 @@
 
 import { PROBLEM_5_INPUT } from "../../data/2023/problem5Input";
-import { problem5_part1 } from "../../src/2023/problem5";
+import { problem5_part1, problem5_part2 } from "../../src/2023/problem5";
 
 describe('Problem 5', () => {
     const problem5SampleInput = `seeds: 79 14 55 13
@@ -43,5 +43,14 @@ humidity-to-location map:
 
     it('Part 1 final', () => {
         expect(problem5_part1(PROBLEM_5_INPUT)).toEqual(26273516);
+    });
+
+    it('Part 2 sample', (): void => {
+        expect(problem5_part2(problem5SampleInput)).toEqual(46);
+    });
+
+    // Disabled running this test because it takes like 6 minutes
+    fit('Part 2 final', (): void => {
+        expect(problem5_part2(PROBLEM_5_INPUT)).toEqual(34039469);
     });
 });

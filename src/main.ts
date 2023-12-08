@@ -1,8 +1,9 @@
 import { ExecutionTimerResult, measureExecutionTime } from 'func-timer'
 import { AdventOfCodeAnswer } from './interfaces';
 
-const year = process.argv[2] ? parseInt(process.argv[2]) : 2020; // TODO change to 2021
+const year = process.argv[2] ? parseInt(process.argv[2]) : 2023;
 const problemNumber = process.argv[3] ? parseInt(process.argv[3]) : 1;
+const numIterations = process.argv[4] ? parseInt(process.argv[4]) : 1;
 
 async function main() {
     let timerResult: ExecutionTimerResult;
@@ -13,7 +14,6 @@ async function main() {
     const inputFileContents = await import(inputDataFile);
     const input = Object.values(inputFileContents);
     const problem = await import(problemFile);
-    const numIterations = 10;
 
     for (const subProblemName in problem) {
         if (Object.prototype.hasOwnProperty.call(problem, subProblemName)) {
@@ -23,6 +23,7 @@ async function main() {
                 continue;
             }
             const currentSubProblem = problem[subProblemName];
+            console.log(`Running ${subProblemName} for a total of ${numIterations} benchmarking iterations...`);
             timerResult = await measureExecutionTime(currentSubProblem, input, numIterations);
             const solution = timerResult.functionOutput as AdventOfCodeAnswer;
             console.log(`${currentSubProblem.name} results:\n${solution.description}:\n${solution.answer}`);

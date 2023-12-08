@@ -27,7 +27,9 @@
             "name": "Launch current file with ts-node",
             "protocol": "inspector",
             "args": [
-                "${relativeFile}"
+                "${relativeFile}",
+                "2023",
+                "5"
             ],
             "cwd": "${workspaceRoot}",
             "runtimeArgs": [

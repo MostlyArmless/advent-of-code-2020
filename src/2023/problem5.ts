@@ -1,4 +1,4 @@
-import { isDigit } from "../tools";
+import { reportProgress, isDigit } from "../tools";
 
 interface RangeRule {
   destinationRangeStart: number;
@@ -65,5 +65,65 @@ function move(position: number, rangeRules: RangeRule[]): number {
 }
 
 export function problem5_part2(input: string): number {
-  return 0;
+  const lines = input.split('\n');
+  const mappings: RangeRule[][] = [];
+  let seedRanges: number[][] = []; // in pairs, e.g. [[1,2],[3,4]]
+
+  // Load the mappings from the input
+  lines.forEach(line => {
+    if (line.startsWith('seeds:')) {
+      let seedLineNumbers = line.split('seeds: ')[1].split(' ').map(s => parseInt(s));
+      seedLineNumbers.forEach((n, i) => {
+        if (i % 2 === 0) {
+          seedRanges.push([n])
+        } else {
+          seedRanges[seedRanges.length - 1].push(n)
+        }
+      });
+    } else if (isDigit(line[0])) {
+      const numStrs = line.split(' ');
+      const rangeRule: RangeRule = {
+        destinationRangeStart: parseInt(numStrs[0]),
+        sourceRangeStart: parseInt(numStrs[1]),
+        rangeLength: parseInt(numStrs[2])
+      };
+      mappings[mappings.length - 1].push(rangeRule);
+    } else if (line.includes(':')) {
+      mappings.push([]);
+    } else {
+      // Empty line, just continue
+    }
+  });
+
+  // Find the lowest location number of all the seeds
+  let lowestLocation = Number.MAX_SAFE_INTEGER;
+
+  // count the total seeds
+  let totalSeeds = 0;
+  seedRanges.forEach(range => {
+    totalSeeds += range[1]; // add the rangeLength
+  });
+
+  let i = 0;
+  const startTime = process.hrtime();
+  for (let iRange = 0; iRange < seedRanges.length; iRange++) {
+    const [rangeStart, rangeLength] = seedRanges[iRange];
+    const rangeEnd = rangeStart + rangeLength - 1;
+
+    for (let seedStartPosition = rangeStart; seedStartPosition <= rangeEnd; seedStartPosition++) {
+      let currentPosition = seedStartPosition;
+      if (i++ % 1e7 == 0) {
+        reportProgress(startTime, i, totalSeeds);
+      }
+      // Go through all the mappings and convert from seed to soil to fertilizer etc.. to location
+      mappings.forEach(map => {
+        currentPosition = move(currentPosition, map);
+      });
+
+      lowestLocation = Math.min(lowestLocation, currentPosition);
+    }
+  }
+
+  console.log(`lowestLocation = ${lowestLocation}`);
+  return lowestLocation;
 }
