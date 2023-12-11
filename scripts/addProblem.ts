@@ -38,7 +38,7 @@ fse.writeFileSync(inputFileName, `export const PROBLEM_${problemNumber}_INPUT = 
 // add test cases
 const testFileContents = `
 import { PROBLEM_${problemNumber}_INPUT } from "../../data/${year}/problem${problemNumber}Input";
-import { problem${problemNumber}_part1 } from "../../src/${year}/problem${problemNumber}";
+import { problem${problemNumber}_part1, problem${problemNumber}_part2 } from "../../src/${year}/problem${problemNumber}";
 
 describe( 'Problem ${problemNumber}', () =>
 {
@@ -52,6 +52,16 @@ describe( 'Problem ${problemNumber}', () =>
     it( 'Part 1 final', () =>
     {
         expect( problem${problemNumber}_part1( PROBLEM_${problemNumber}_INPUT ) ).toEqual( 42 );
+    } );
+
+    it( 'Part 2 sample', () =>
+    {
+        expect( problem${problemNumber}_part2( problem${problemNumber}SampleInput ) ).toEqual( 42 );
+    } );
+
+    it( 'Part 2 final', () =>
+    {
+        expect( problem${problemNumber}_part2( PROBLEM_${problemNumber}_INPUT ) ).toEqual( 42 );
     } );
 } );`;
 fse.writeFileSync(testFileName, testFileContents);
