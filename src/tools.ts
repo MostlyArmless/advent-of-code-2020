@@ -55,3 +55,15 @@ export function reportProgress(startTime: [number, number], i: number, total: nu
     const remainingTime = remainingIterations / velocity; // seconds
     console.log(`On iteration ${i} of ${total} (${percent}%) after ${elapsedSeconds}.${elapsedMilliseconds} seconds, ${remainingTime} seconds remaining...`); // print message + time
 }
+
+export function greatestCommonDenominator(a: number, b: number): number {
+    return b === 0 ? a : greatestCommonDenominator(b, a % b);
+}
+
+export function leastCommonMultiple(a: number, b: number): number {
+    return a / greatestCommonDenominator(a, b) * b;
+}
+
+export function leastCommonMultipleOfMany(n: number[]): number {
+    return n.reduce(leastCommonMultiple, 1);
+}
