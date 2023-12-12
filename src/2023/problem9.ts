@@ -6,7 +6,10 @@ export function problem9_part1(input: string): number {
 }
 
 export function problem9_part2(input: string): number {
-    return 0;
+    const sequences = input.split('\n').map(line => line.split(' ').map(s => parseInt(s)));
+    return sequences.map(sequence => {
+        return extrapolateSequence(sequence.reverse());
+    }).reduce((a, b) => a + b);
 }
 
 // Take the derivative of an array

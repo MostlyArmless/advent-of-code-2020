@@ -1,6 +1,6 @@
 
 import { PROBLEM_9_INPUT } from "../../data/2023/problem9Input";
-import { diff, extrapolateSequence, problem9_part1 } from "../../src/2023/problem9";
+import { diff, extrapolateSequence, problem9_part1, problem9_part2 } from "../../src/2023/problem9";
 
 describe('Problem 9', () => {
     const problem9SampleInput = `0 3 6 9 12 15
@@ -24,5 +24,13 @@ describe('Problem 9', () => {
 
     it('Part 1 final', () => {
         expect(problem9_part1(PROBLEM_9_INPUT)).toEqual(1762065988);
+    });
+
+    it('Part 2 sample', (): void => {
+        expect(problem9_part2(problem9SampleInput)).toEqual(2);
+    });
+
+    it('Part 2 final', () => {
+        expect(problem9_part2(PROBLEM_9_INPUT)).toEqual(1066);
     });
 });
