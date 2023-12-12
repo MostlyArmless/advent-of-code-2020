@@ -21,13 +21,11 @@ if (fse.existsSync(solutionFileName)
     throw new Error(`ABORTING: At least one of the files already exists for problem ${problemNumber}`);
 
 // Create solution file
-const solutionFileContents = `export function problem${problemNumber}_part1( input: string ): number
-{
+const solutionFileContents = `export function problem${problemNumber}_part1( input: string ): number {
     return 0;
 }
 
-export function problem${problemNumber}_part2( input: string ): number
-{
+export function problem${problemNumber}_part2( input: string ): number {
     return 0;
 }`;
 fse.writeFileSync(solutionFileName, solutionFileContents);
@@ -40,27 +38,22 @@ const testFileContents = `
 import { PROBLEM_${problemNumber}_INPUT } from "../../data/${year}/problem${problemNumber}Input";
 import { problem${problemNumber}_part1, problem${problemNumber}_part2 } from "../../src/${year}/problem${problemNumber}";
 
-describe( 'Problem ${problemNumber}', () =>
-{
+describe( 'Problem ${problemNumber}', () => {
     const problem${problemNumber}SampleInput = \`stuff\`;
 
-    it( 'Part 1 sample', () =>
-    {
+    it( 'Part 1 sample', () => {
         expect( problem${problemNumber}_part1( problem${problemNumber}SampleInput ) ).toEqual( 42 );
     } );
 
-    it( 'Part 1 final', () =>
-    {
+    it( 'Part 1 final', () => {
         expect( problem${problemNumber}_part1( PROBLEM_${problemNumber}_INPUT ) ).toEqual( 42 );
     } );
 
-    it( 'Part 2 sample', () =>
-    {
+    it( 'Part 2 sample', () => {
         expect( problem${problemNumber}_part2( problem${problemNumber}SampleInput ) ).toEqual( 42 );
     } );
 
-    it( 'Part 2 final', () =>
-    {
+    it( 'Part 2 final', () => {
         expect( problem${problemNumber}_part2( PROBLEM_${problemNumber}_INPUT ) ).toEqual( 42 );
     } );
 } );`;
