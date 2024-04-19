@@ -67,3 +67,73 @@ export function leastCommonMultiple(a: number, b: number): number {
 export function leastCommonMultipleOfMany(n: number[]): number {
     return n.reduce(leastCommonMultiple, 1);
 }
+
+export type Direction = 'N' | 'S' | 'E' | 'W' | 'NE' | 'NW' | 'SE' | 'SW';
+// Assumes that iRow = 0, iCol = 0 is the top left
+// i.e. iRow increases downwards, and iCol increases rightwards
+export function getGridNeighborCoords(iRow: number, iCol: number, numRows: number, numCols: number, directions?: Direction[]) {
+    if (!directions || directions.length === 0) {
+        // Look in every direction
+        directions = ['N', 'S', 'E', 'W', 'NE', 'NW', 'SE', 'SW'];
+    }
+
+    const neighbors = [];
+    directions.forEach(direction => {
+        switch (direction) {
+            case 'N': {
+                if (isInsideGrid(iRow - 1, iCol, numRows, numCols)) {
+                    neighbors.push(`${iRow - 1},${iCol}`);
+                }
+                break;
+            }
+            case 'S': {
+                if (isInsideGrid(iRow + 1, iCol, numRows, numCols)) {
+                    neighbors.push(`${iRow + 1},${iCol}`);
+                }
+                break;
+            }
+            case 'E': {
+                if (isInsideGrid(iRow, iCol + 1, numRows, numCols)) {
+                    neighbors.push(`${iRow},${iCol + 1}`);
+                }
+                break;
+            }
+            case 'W': {
+                if (isInsideGrid(iRow, iCol - 1, numRows, numCols)) {
+                    neighbors.push(`${iRow},${iCol - 1}`);
+                }
+                break;
+            }
+            case 'NE': {
+                if (isInsideGrid(iRow - 1, iCol + 1, numRows, numCols)) {
+                    neighbors.push(`${iRow - 1},${iCol + 1}`);
+                }
+                break;
+            }
+            case 'NW': {
+                if (isInsideGrid(iRow - 1, iCol - 1, numRows, numCols)) {
+                    neighbors.push(`${iRow - 1},${iCol - 1}`);
+                }
+                break;
+            }
+            case 'SE': {
+                if (isInsideGrid(iRow + 1, iCol + 1, numRows, numCols)) {
+                    neighbors.push(`${iRow + 1},${iCol + 1}`);
+                }
+                break;
+            }
+            case 'SW': {
+                if (isInsideGrid(iRow + 1, iCol - 1, numRows, numCols)) {
+                    neighbors.push(`${iRow + 1},${iCol - 1}`);
+                }
+                break;
+            }
+        }
+    });
+
+    return neighbors;
+}
+
+export function isInsideGrid(iRow: number, iCol: number, numRows: number, numCols: number): boolean {
+    return iRow >= 0 && iCol >= 0 && iRow < numRows && iCol < numCols;
+}
