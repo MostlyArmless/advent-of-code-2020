@@ -2,3 +2,5 @@
 **/node_modules/
 # Ignore the outputs of tsc
 /build/
+# Dummy change to test Github CI
+*.bak
