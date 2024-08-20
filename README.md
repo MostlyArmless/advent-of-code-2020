@@ -32,4 +32,4 @@ Install VS Code's [Mocha Test Explorer](https://marketplace.visualstudio.com/ite
 
 To quickly add the boilerplate code for another problem, run `npm run add -- N` where `N` is the problem number you wish to add. This adds content to the end of `main.ts` to run the solution, and creates the following 3 files: `problemN.ts` to contain the solution to the problem, `problemNInput.ts` to hold the problem input as a string variable, and `problemN.spec.ts` to hold the unit/integration tests relevant to that problem.
 
-# CONFLICTING CHANGE FROM ANOTHER PR
+# Dummy PR content
