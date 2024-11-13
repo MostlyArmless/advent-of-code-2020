@@ -1,6 +1,6 @@
 # advent-of-code-2020
 
-My solutions to the [Advent of Code 2020](https://adventofcode.com/2020) problems.
+My solutions to the [Advent of Code 2020](https://adventofcode.com/2020) and 2023 problems, using nodejs.
 
 ## Setup
 
